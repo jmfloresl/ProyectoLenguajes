@@ -48,9 +48,9 @@ public class CategoriasServiceImpl implements CategoriasService {
             CategoriaActualizar.setNombre(categoria.getNombre()); 
             this.CategoriasRepository.save(CategoriaActualizar); //se guardan los cambios que tengamos hechos 
 
-            return "se Ha actualizado el cliente: " + idCategoria;
+            return "se Ha actualizado la categoria: " + idCategoria;
         }
-        return "No Existe el cliente con dni: " + idCategoria;
+        return "No Existe la categoria con id: " + idCategoria;
                        
 
     }

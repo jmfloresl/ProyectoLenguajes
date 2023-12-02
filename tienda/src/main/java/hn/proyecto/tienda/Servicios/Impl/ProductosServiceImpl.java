@@ -3,11 +3,13 @@ package hn.proyecto.tienda.Servicios.Impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import hn.proyecto.tienda.Modelos.Productos;
 import hn.proyecto.tienda.Repositorios.ProductosRepository;
 import hn.proyecto.tienda.Servicios.ProductosService;
 
+@Service
 public class ProductosServiceImpl implements ProductosService {
 
     @Autowired
