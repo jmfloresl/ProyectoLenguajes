@@ -46,6 +46,7 @@ public class ClientesServiceImpl implements ClientesService {
             cteActualizar.setNombre(cliente.getNombre()); 
             cteActualizar.setDireccion(cliente.getDireccion()); 
             cteActualizar.setApellido(cliente.getApellido()); 
+            cteActualizar.setContrasenia(cliente.getContrasenia());
             cteActualizar.setCorreo(cliente.getCorreo()); 
             cteActualizar.setTelefono(cliente.getTelefono());
             this.ClientesRepository.save(cteActualizar); 
