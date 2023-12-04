@@ -17,10 +17,19 @@ public class ClientesServiceImpl implements ClientesService {
     private ClientesRepository ClientesRepository;
 
     @Override
-    public Clientes crearCliente(Clientes nvocliente) {
-        Clientes clienteGuardado = ClientesRepository.save(nvocliente);
-        return clienteGuardado; 
+    public boolean crearCliente(Clientes nvocliente) {
+        try {
+            // Lógica para crear el cliente en la base de datos
+            ClientesRepository.save(nvocliente);
+            return true;
+        } catch (Exception e) {
+            // Manejar cualquier excepción que pueda ocurrir al crear el cliente
+            e.printStackTrace(); // Puedes imprimir la excepción para fines de depuración
+            return false;
+        }
     }
+
+
 
     @Override
     public String eliminarClientePorId(Integer numeroCliente) {

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +20,21 @@ import hn.proyecto.tienda.Modelos.Clientes;
 import hn.proyecto.tienda.Servicios.Impl.ClientesServiceImpl;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/clientes")
 public class ClientesController {
     @Autowired
     private ClientesServiceImpl clienteServiceImpl; 
 
     @PostMapping("/crear")
-    public Clientes crearCliente(@RequestBody Clientes nvocliente){
-
-        return this.clienteServiceImpl.crearCliente(nvocliente);
+    public boolean crearCliente(@RequestBody Clientes nvocliente){
+        
+        boolean creadoCorrectamente = this.clienteServiceImpl.crearCliente(nvocliente); 
+        
+        if (creadoCorrectamente) {
+        return true;
+        } else {
+        return false;
+     }
     }
 
     @GetMapping("/todos")
@@ -49,13 +57,13 @@ public class ClientesController {
 
     }
     
-    @PostMapping("/validarCliente")
-    public ResponseEntity<String> validarCliente(@RequestBody Clientes cliente) {
+    @PostMapping("/validar")
+    public boolean validarCliente(@RequestBody Clientes cliente) {
         boolean esValido = clienteServiceImpl.validarCliente(cliente);
         if (esValido) {
-            return new ResponseEntity<>("Cliente válido", HttpStatus.OK);
+            return true;
         } else {
-            return new ResponseEntity<>("Cliente no válido", HttpStatus.UNAUTHORIZED);
+            return false;
         }
     }
 

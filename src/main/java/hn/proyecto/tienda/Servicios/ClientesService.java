@@ -8,7 +8,7 @@ import hn.proyecto.tienda.Modelos.Clientes;
 
 public interface ClientesService {  
 
-    public Clientes crearCliente(Clientes cliente); 
+    public boolean crearCliente(Clientes cliente); 
 
     public String eliminarClientePorId (Integer numeroCliente) ; 
 
