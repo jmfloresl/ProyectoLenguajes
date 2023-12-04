@@ -30,6 +30,9 @@ public class Clientes {
     @Column(nullable = false)
     private String apellido;
 
+    @Column(name="Contrasenia")
+    private String contrasenia;
+
     @Column(nullable = false)
     private String correo;
 

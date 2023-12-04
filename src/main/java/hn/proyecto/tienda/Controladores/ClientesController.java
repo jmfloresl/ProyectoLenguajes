@@ -3,6 +3,8 @@ package hn.proyecto.tienda.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,4 +49,14 @@ public class ClientesController {
 
     }
     
+    @PostMapping("/validarCliente")
+    public ResponseEntity<String> validarCliente(@RequestBody Clientes cliente) {
+        boolean esValido = clienteServiceImpl.validarCliente(cliente);
+        if (esValido) {
+            return new ResponseEntity<>("Cliente válido", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Cliente no válido", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
 }

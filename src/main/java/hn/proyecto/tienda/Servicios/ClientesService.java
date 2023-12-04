@@ -17,4 +17,6 @@ public interface ClientesService {
     public String actualizarCliente(Integer idCliente,Clientes cliente); 
    
     public Clientes obtenerClientePorId(int idCliente, Clientes cliente);
+
+    public boolean validarCliente(Clientes cliente);
 }

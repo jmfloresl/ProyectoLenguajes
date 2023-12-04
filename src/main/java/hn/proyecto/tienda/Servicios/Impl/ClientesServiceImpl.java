@@ -1,6 +1,7 @@
 package hn.proyecto.tienda.Servicios.Impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,7 @@ public class ClientesServiceImpl implements ClientesService {
             cteActualizar.setNombre(cliente.getNombre()); 
             cteActualizar.setDireccion(cliente.getDireccion()); 
             cteActualizar.setApellido(cliente.getApellido()); 
+            cteActualizar.setContrasenia(cliente.getContrasenia());
             cteActualizar.setCorreo(cliente.getCorreo()); 
             cteActualizar.setTelefono(cliente.getTelefono());
             this.ClientesRepository.save(cteActualizar); 
@@ -59,5 +61,21 @@ public class ClientesServiceImpl implements ClientesService {
     public Clientes obtenerClientePorId(int idCliente, Clientes cliente) {
         Clientes cteEncontrado = this.ClientesRepository.findById(idCliente).get();
         return cteEncontrado;
+    }
+
+    @Override
+    public boolean validarCliente(Clientes cliente) {
+        if (cliente != null && cliente.getCorreo() != null && cliente.getContrasenia() != null) {
+            Optional<Clientes> optionalClientes = ClientesRepository.findByCorreo(cliente.getCorreo());
+    
+            if (optionalClientes.isPresent()) {
+                Clientes clientes = optionalClientes.get();
+    
+                if (cliente.getContrasenia().equals(clientes.getContrasenia())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
